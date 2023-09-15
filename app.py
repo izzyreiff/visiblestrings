@@ -1,18 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 import os
 import re
+from dictionary import dict  # Import the dict dictionary from dictionary.py
 
 app = Flask(__name__)
 
-# Define your dictionary and functions here
-debut = {
-    "Tim McGraw": "1_1.txt",
-    "Picture To Burn": "1_2.txt",
-    "Teardrops on My Guitar": "1_3.txt",
-    "A Place In This World": "1_4.txt",
-    "Cold As You": "1_5.txt"
-}
-
+# Define your functions here
 def read_file_content(file_path):
     try:
         with open(file_path, "r") as file:
@@ -58,8 +51,8 @@ def index():
 @app.route('/process_input', methods=['POST'])
 def process_input():
     user_input = request.form.get('userInput', '')
-    matching_entries = find_matching_initial_letters(user_input, debut)
-    result = f"Songs containing '{user_input}': " + ", ".join(matching_entries) if matching_entries else f"No songs were found containing '{user_input}'. Try removing a letter from the beginning or end, and try again!"
+    matching_entries = find_matching_initial_letters(user_input, dict)
+    result = f"Songs containing '{user_input}': " + ", ".join(matching_entries) if matching_entries else f"No songs were found containing '{user_input}'. Try removing a letter from the beginning or end, and enter it again!"
     return render_template('index.html', result=result)
 
 if __name__ == '__main__':
