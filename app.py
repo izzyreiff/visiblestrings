@@ -59,7 +59,7 @@ def index():
 def process_input():
     user_input = request.form.get('userInput', '')
     matching_entries = find_matching_initial_letters(user_input, debut)
-    result = f"Songs containing '{user_input}': " + ", ".join(matching_entries) if matching_entries else f"No entries found containing '{user_input}'"
+    result = f"Songs containing '{user_input}': " + ", ".join(matching_entries) if matching_entries else f"No songs were found containing '{user_input}'. Try removing a letter from the beginning or end, and try again!"
     return render_template('index.html', result=result)
 
 if __name__ == '__main__':
