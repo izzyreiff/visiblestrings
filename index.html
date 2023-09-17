@@ -157,11 +157,12 @@
                     var rows = data.split('\n');
                     for (var i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
                         var columns = rows[i].split(',');
-                        if (columns.length === 3) { // Assuming 3 columns: Title Album Lyrics
+                        if (columns.length === 4) { // Assuming 4 columns: Title Album Lyrics TitlesCleaned
                             var song = {
                                 Title: columns[0].trim(),
                                 Album: columns[1].trim(),
-                                Lyrics: columns[2].trim()
+                                Lyrics: columns[2].trim(),
+                                TitlesCleaned: columns[3].trim()
                             };
                             songs.push(song);
                         }
