@@ -176,12 +176,17 @@
             var matchingEntries = [];
             console.log("checking")
             for (var i = 0; i < songs.length; i++) {
-                var lyrics = songs[i].Lyrics.toLowerCase();
+                var lyrics = songs[i].Lyrics;
                 var title = songs[i].Title;
+                var titleclean = songs[i].TitlesCleaned;
                 console.log(1)
                 if (lyrics.includes(userInput)) {
                     matchingEntries.push(title);
-                    console.log("match")
+                    console.log("lyrics match")
+                }
+                else if (titleclean.includes(userInput)) {
+                    matchingEntries.push(title);
+                    console.log("title match")
                 }
             }
             var resultElement = document.getElementById('result');

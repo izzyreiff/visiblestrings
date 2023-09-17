@@ -15,6 +15,11 @@ df = pd.read_csv(input_file)
 def remove_text_within_brackets(text):
     return re.sub(r'\[.*?\]', '', text)
 
+def remove_text_within_brackets_and_parentheses(text):
+    # Remove text within square brackets and parentheses
+    cleaned_text = re.sub(r'[\[\(].*?[\]\)]', '', text)
+    return cleaned_text
+
 def clean_text(text):
     cleaned_content = re.sub(r'[^\w\s]', '', text).lower().replace('\n', ' ')
     return cleaned_content
@@ -28,6 +33,12 @@ def first_letters(text):
 df['Lyrics'] = df['Lyrics'].apply(remove_text_within_brackets)
 df['Lyrics'] = df['Lyrics'].apply(clean_text)
 df['Lyrics'] = df['Lyrics'].apply(first_letters)
+
+# Copy the content of the first column into a new fourth column
+df['TitlesCleaned'] = df.iloc[:, 0]
+df['TitlesCleaned'] = df['TitlesCleaned'].apply(remove_text_within_brackets_and_parentheses)
+df['TitlesCleaned'] = df['TitlesCleaned'].apply(clean_text)
+df['TitlesCleaned'] = df['TitlesCleaned'].apply(first_letters)
 
 # Save the modified DataFrame to a new CSV file
 df.to_csv(output_file, index=False)
