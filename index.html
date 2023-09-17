@@ -9,7 +9,99 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🌼</text></svg>">
     <!-- Custom CSS -->
     <style>
+        /* Taylor Swift Pastel Color Palette */
+        :root {
+            --pastel-pink: #FFA7D1; /* Soft Pink */
+            --pastel-blue: #AED9E0; /* Sky Blue */
+            --pastel-lavender: #C9A7E5; /* Lavender */
+            --pastel-mint: #B4E7E5; /* Mint Green */
+            --pastel-gray: #321c1c; /*#D3D3D3; /* Light Gray */
+            --pastel-cream: #F8EDEB; /* Cream */
+            --pastel-peach: #FFDAB9; /* Peach */
+            --pastel-lilac: #E0BBE4; /* Lilac */
+            --pastel-mauve: #E6B0AA; /* Mauve */
+            --pastel-mint2: #98FF98; /* Light Mint Green */
+        }
+
+        /* Updated Styles with Pastel Colors */
         body {
+            background-color: var(--pastel-cream);
+            color: var(--pastel-gray);
+        }
+
+        .container {
+            background-color: #fff; /* Default white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            background-color: var(--pastel-blue);
+        }
+
+        /* Initial styles for .navbar-brand */
+        .navbar-brand {
+            color: #fff; /* White text color */
+            padding-left: 4%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            transition: color 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        /* Change the text color on hover */
+        .navbar-brand:hover {
+            color: #321c1c;
+        }
+
+        h1 {
+            color: var(--pastel-gray); /* Light gray heading color */
+        }
+
+        h3 {
+            color: var(--pastel-gray); /* Light gray subheading color */
+        }
+
+        /* Apply the pastel color palette to <a> links */
+        a {
+            color: var(--pastel-pink); /* Default link color (pastel pink) */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        /* Change the link color on hover */
+        a:hover {
+            color: var(--pastel-blue); /* Hover link color (pastel blue) */
+        }
+
+        .form-group label {
+            color: var(--pastel-gray); /* Light gray label color */
+        }
+
+        .form-control {
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--pastel-blue);
+            border-color: var(--pastel-blue);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--pastel-pink);
+            border-color: var(--pastel-pink);
+            /* color: #321c1c; */
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* body {
             background-color: #f5f5f5;
         }
         .container {
@@ -37,7 +129,7 @@
         .form-control {
             padding: 10px;
             margin-top: 10px;
-            margin-bottom: 20px; /* Adjust the value to control the space */
+            margin-bottom: 20px; /* Adjust the value to control the space 
         }
         .btn-primary {
             background-color: #9db5c6;
@@ -52,7 +144,7 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+        } */
     </style>
     <!-- Include Font Awesome icons -->
     <script src="https://kit.fontawesome.com/982e2175e7.js" crossorigin="anonymous"></script>
@@ -84,7 +176,7 @@
     <footer class="mt-5 py-3 text-center">
         <div class="container">
             <div class="row">
-                <small>You can find more from me on my <a href="https://izzyreiff.com" target="_blank">website</a> or <a href="https://github.com/izzyreiff/" target="_blank">Github</a>. Feel free to send any feedback to my <a href="https://twitter.com/izzyreiff/" target="_blank">Twitter</a>.
+                <small>You can find more from me on my <a href="https://izzyreiff.com" target="_blank">website</a> or <a href="https://github.com/izzyreiff/" target="_blank">Github</a>. Yes, the title of this project is supposed to be a silly inside joke. Feel free to send any feedback to my <a href="https://twitter.com/izzyreiff/" target="_blank">Twitter</a>.
                 </small>
             </div>
         </div>
