@@ -34,7 +34,7 @@ df['Lyrics'] = df['Lyrics'].apply(remove_text_within_brackets)
 df['Lyrics'] = df['Lyrics'].apply(clean_text)
 df['Lyrics'] = df['Lyrics'].apply(first_letters)
 
-# Copy the content of the first column into a new fourth column
+# Create a fourth column with song title abreviations
 df['TitlesCleaned'] = df.iloc[:, 0]
 df['TitlesCleaned'] = df['TitlesCleaned'].apply(remove_text_within_brackets_and_parentheses)
 df['TitlesCleaned'] = df['TitlesCleaned'].apply(clean_text)
