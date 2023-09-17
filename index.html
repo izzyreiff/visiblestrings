@@ -64,30 +64,94 @@
     <div class="container mt-4">
         <h1>Visible Strings</h1>
         <h3>Came back from the Eras tour and can't decode your new friendship bracelet?</h3>
-        <h3>Input the letters* below, and find out the song!</h3>
-        <p>*Just letters, no need for spaces :)</p>
-        <!-- Form for user input -->
-        <form method="POST" action="/process_input">
-            <div class="form-group">
+        <h3>Input the letters below, and find out the song!</h3>
+        <p>* Just letters, no need for spaces :)<br>* If your bracelet has numbers, use the letter equivalent. For example, 15 -> f, 22 -> t</p>
+
+        <!-- <form> -->
+            <!-- <div class="form-group">
                 <label for="userInput">Enter letters:</label>
                 <input type="text" class="form-control" id="userInput" name="userInput" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            </div> -->
+            <!-- <input type="text" id="userInput" placeholder="Enter a search term">  -->
+            <!-- <button onclick="searchSongs()" class="btn btn-primary">Search</button> -->
+        <!-- </form> -->
+        <!-- <form> -->
+            <!-- <div class="form-group"> -->
+                <input type="text" id="userInput" placeholder="i.e. hygtg"> 
+                <button onclick="searchSongs()" class="btn btn-primary">Search</button>
+            <!-- </div> -->
+        <!-- </form> -->
+        
+        <!-- <p id="result"></p> -->
+
+        <!-- Form for user input -->
+        <!-- <form> -->
+            <!-- <div class="form-group">
+                <label for="userInput">Enter letters:</label>
+                <input type="text" class="form-control" id="userInput" name="userInput" required>
+            </div> -->
+            <!-- <button onclick="searchSongs()" type="submit" class="btn btn-primary">Submit</button> -->
+        <!-- </form> -->
         
         <!-- Display the result here with Bootstrap Card -->
-        {% if result %}
         <div class="mt-4">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text">{{ result }}</p>
+                    <p id="result"></p>
                 </div>
             </div>
         </div>
-        {% endif %}
-    </div>
+    <!-- </div> -->
 
     <!-- Include Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var songs = []; // Initialize an empty array for song data
+        // Function to fetch and parse the CSV file
+        function fetchCSV() {
+            fetch('clean.csv') // Replace with the path to your CSV file
+                .then(response => response.text())
+                .then(data => {
+                    // Parse the CSV data into an array of objects
+                    var rows = data.split('\n');
+                    for (var i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+                        var columns = rows[i].split(',');
+                        if (columns.length === 3) { // Assuming 3 columns: Title Album Lyrics
+                            var song = {
+                                Title: columns[0].trim(),
+                                Album: columns[1].trim(),
+                                Lyrics: columns[2].trim()
+                            };
+                            songs.push(song);
+                        }
+                    }
+                })
+                .catch(error => console.error('Error fetching CSV:', error));
+        }
+
+        // Call the fetchCSV function to load data from the CSV file
+        fetchCSV();
+
+        function searchSongs() {
+            var userInput = document.getElementById('userInput').value.toLowerCase();
+            var matchingEntries = [];
+            console.log("checking")
+            for (var i = 0; i < songs.length; i++) {
+                var lyrics = songs[i].Lyrics.toLowerCase();
+                var title = songs[i].Title;
+                console.log(1)
+                if (lyrics.includes(userInput)) {
+                    matchingEntries.push(title);
+                    console.log("match")
+                }
+            }
+            var resultElement = document.getElementById('result');
+            if (matchingEntries.length > 0) {
+                resultElement.textContent = "Songs containing '" + userInput + "': " + matchingEntries.join(", ");
+            } else {
+                resultElement.textContent = "No songs were found containing '" + userInput + "'. Try removing a letter from the beginning or end, and enter it again!";
+            }
+        }
+    </script>
 </body>
 </html>

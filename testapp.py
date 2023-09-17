@@ -1,23 +1,14 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 import os
 import re
 import pandas as pd
 
 app = Flask(__name__)
 
-# file_path refers to the csv file that holds all songs
+# File_path refers to the csv file that holds all songs
 file_path = 'clean.csv'
-# Read the csv file into a DataFrame, try and catch reading errors
-try:
-    df = pd.read_csv(file_path)
-except FileNotFoundError:
-    print(f"Error: The file '{file_path}' was not found.")
-except pd.errors.EmptyDataError:
-    print(f"Error: The file '{file_path}' is empty.")
-except pd.errors.ParserError:
-    print(f"Error: There was an issue parsing the CSV file '{file_path}'.")
-except Exception as e:
-    print(f"An unexpected error occurred: {str(e)}")
+# Read the csv file into a DataFrame
+df = pd.read_csv(file_path)
 
 def find_matching_initial_letters(input_string):
     matching_entries = []
