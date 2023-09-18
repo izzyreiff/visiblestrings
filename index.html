@@ -149,7 +149,7 @@
             <li>If your bracelet has numbers, use the letter equivalent. For example, 15 -> f, 22 -> t</li>
             <li>Common acronyms may include things like "FTV" (From The Vault), "SGAV" (Sad Girl Autumn Version), "RLPS" (Recorded at Long Pond Studios), "TV" (Taylor's Version), etc. Try excluding these from your search!</li>
         </ul>
-        <input type="text" id="userInput" placeholder="i.e. hygtg"> 
+        <input type="text" id="userInput" placeholder="i.e. hygtg" onkeydown="handleKeyDown(event)">
         <button onclick="searchSongs()" class="btn btn-primary">Search</button>
         <!-- Display the result here with Bootstrap Card -->
         <div class="mt-4">
@@ -219,6 +219,12 @@
                 resultElement.textContent = "Songs containing '" + userInput + "': " + matchingEntries.join(", ");
             } else {
                 resultElement.textContent = "No songs were found containing '" + userInput + "'. Try removing a letter from the beginning or end, and enter it again!";
+            }
+        }
+        // Enable pressing enter as userInput
+        function handleKeyDown(event) {
+            if (event.keyCode === 13) {
+                searchSongs(); // Call the searchSongs function when Enter is pressed
             }
         }
     </script>
